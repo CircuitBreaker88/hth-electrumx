@@ -2350,6 +2350,30 @@ class NIX(Coin):
     RPC_PORT = 6215
     REORG_LIMIT = 1000
 
+class HTH(Coin):
+    NAME = "HelptheHomelessCoin"
+    SHORTNAME = "HTH"
+    NET = "mainnet"
+    BASIC_HEADER_SIZE = 80
+    P2PKH_VERBYTE = bytes.fromhex("64")
+    P2SH_VERBYTES = [bytes.fromhex("28")]
+    WIF_BYTE = bytes.fromhex("E4")
+    GENESIS_HASH = ('37540c3c757bb77e42c168d8197447b6'
+                    'aba38c2d1ec0ddf59d2e774c41953093')
+    DESERIALIZER = lib_tx.DeserializerSegWit
+    TX_COUNT = 65326
+    TX_COUNT_HEIGHT = 25000
+    TX_PER_BLOCK = 2
+
+    @classmethod
+    def header_hash(cls, header):
+        import x22i_hash, x25x_hash
+        x22i_pow=x22i_hash.getPoWHash(header)
+        if '000' in (hash_to_hex_str(x22i_pow)[:3]):
+           return x22i_pow
+        else:
+           return x25x_hash.getPoWHash(header)
+
 class SIN(Coin):
     NAME = "SIN"
     SHORTNAME = "SIN"
