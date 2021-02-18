@@ -2351,7 +2351,7 @@ class NIX(Coin):
     REORG_LIMIT = 1000
 
 class HTH(Coin):
-    NAME = "HelptheHomelessCoin"
+    NAME = "HTH"
     SHORTNAME = "HTH"
     NET = "mainnet"
     BASIC_HEADER_SIZE = 80
