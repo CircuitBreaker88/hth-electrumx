@@ -2355,6 +2355,8 @@ class HTH(Coin):
     SHORTNAME = "HTH"
     NET = "mainnet"
     BASIC_HEADER_SIZE = 80
+    XPUB_VERBYTES = bytes.fromhex("0488b21e")
+    XPRV_VERBYTES = bytes.fromhex("0488ade4")
     P2PKH_VERBYTE = bytes.fromhex("64")
     P2SH_VERBYTES = [bytes.fromhex("28")]
     WIF_BYTE = bytes.fromhex("E4")
@@ -2367,11 +2369,7 @@ class HTH(Coin):
 
     @classmethod
     def header_hash(cls, header):
-        import x22i_hash, x25x_hash
-        x22i_pow=x22i_hash.getPoWHash(header)
-        if '000' in (hash_to_hex_str(x22i_pow)[:3]):
-           return x22i_pow
-        else:
+        import x25x_hash
            return x25x_hash.getPoWHash(header)
 
 class SIN(Coin):
