@@ -2370,6 +2370,10 @@ class HTH(Coin):
     @classmethod
     def header_hash(cls, header):
         import x25x_hash
+        x25x_pow=x25x_hash.getPoWHash(header)
+        if '375' in (hash_to_hex_str(x25x_pow)[:3]):
+           return x25x_pow
+        else:
            return x25x_hash.getPoWHash(header)
 
 class SIN(Coin):
